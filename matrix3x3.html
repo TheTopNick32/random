@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Матрица 3 на 3</title>
+    <style>
+        * {
+            font-family: Arial, Verdana, Helvetica, sans-serif;
+        }
+        body {
+            background: #999;
+        }
+        .big {
+            font-size: 50px;
+        }
+        input[disabled] {
+            background-color: #fff7;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <tr>
+            <td>M<sub>1</sub>=</td>
+            <td><span class="big">[</span></td>
+            <td><input type="text" id="1" value="0" oninput="calc()"><br>
+                <input type="text" id="4" value="0" oninput="calc()"><br>
+                <input type="text" id="7" value="0" oninput="calc()">
+            </td>
+            <td><input type="text" id="2" value="0" oninput="calc()"><br>
+                <input type="text" id="5" value="0" oninput="calc()"><br>
+                <input type="text" id="8" value="0" oninput="calc()">
+            </td>
+            <td><input type="text" id="3" value="0" oninput="calc()"><br>
+                <input type="text" id="6" value="0" oninput="calc()"><br>
+                <input type="text" id="9" value="0" oninput="calc()">
+            </td>
+            <td><span class="big">]</span></td>
+        </tr>
+    </table>
+    <table>
+        <tr>
+            <td>M<sub>2</sub>=<input type="text" id="u" value="1" oninput="calc()"></td>
+            <td><span class="big">[</span></td>
+            <td><input type="text" id="m1" value="0" oninput="calc()"><br>
+                <input type="text" id="m4" value="0" oninput="calc()" disabled><br>
+                <input type="text" id="m7" value="0" oninput="calc()" disabled>
+            </td>
+            <td><input type="text" id="m2" value="0" oninput="calc()"><br>
+                <input type="text" id="m5" value="0" oninput="calc()" disabled><br>
+                <input type="text" id="m8" value="0" oninput="calc()" disabled>
+            </td>
+            <td><input type="text" id="m3" value="0" oninput="calc()"><br>
+                <input type="text" id="m6" value="0" oninput="calc()" disabled><br>
+                <input type="text" id="m9" value="0" oninput="calc()" disabled>
+            </td>
+            <td><span class="big">]</span></td>
+        </tr>
+    </table>
+    <table>
+        <tr>
+            <td>M<sub>1</sub>M<sub>2</sub>=</td>
+            <td><span class="big">[</span></td>
+            <td><input type="text" id="r1" value="0" disabled><br>
+                <input type="text" id="r4" value="0" disabled><br>
+                <input type="text" id="r7" value="0" disabled>
+            </td>
+            <td><input type="text" id="r2" value="0" disabled><br>
+                <input type="text" id="r5" value="0" disabled><br>
+                <input type="text" id="r8" value="0" disabled>
+            </td>
+            <td><input type="text" id="r3" value="0" disabled><br>
+                <input type="text" id="r6" value="0" disabled><br>
+                <input type="text" id="r9" value="0" disabled>
+            </td>
+            <td><span class="big">]</span></td>
+        </tr>
+    </table>
+    <table>
+        <tr>
+            <td>M<sub>2</sub>M<sub>1</sub>=</td>
+            <td><span class="big">[</span></td>
+            <td><input type="text" id="rm1" value="0" disabled><br>
+                <input type="text" id="rm4" value="0" disabled><br>
+                <input type="text" id="rm7" value="0" disabled>
+            </td>
+            <td><input type="text" id="rm2" value="0" disabled><br>
+                <input type="text" id="rm5" value="0" disabled><br>
+                <input type="text" id="rm8" value="0" disabled>
+            </td>
+            <td><input type="text" id="rm3" value="0" disabled><br>
+                <input type="text" id="rm6" value="0" disabled><br>
+                <input type="text" id="rm9" value="0" disabled>
+            </td>
+            <td><span class="big">]</span></td>
+        </tr>
+    </table>
+    <script>
+        const inp1=document.getElementById("1");
+        const inp2=document.getElementById("2");
+        const inp3=document.getElementById("3");
+        const inp4=document.getElementById("4");
+        const inp5=document.getElementById("5");
+        const inp6=document.getElementById("6");
+        const inp7=document.getElementById("7");
+        const inp8=document.getElementById("8");
+        const inp9=document.getElementById("9");
+        const inpm1=document.getElementById("m1");
+        const inpm2=document.getElementById("m2");
+        const inpm3=document.getElementById("m3");
+        const inpm4=document.getElementById("m4");
+        const inpm5=document.getElementById("m5");
+        const inpm6=document.getElementById("m6");
+        const inpm7=document.getElementById("m7");
+        const inpm8=document.getElementById("m8");
+        const inpm9=document.getElementById("m9");
+        const r1=document.getElementById("r1");
+        const r2=document.getElementById("r2");
+        const r3=document.getElementById("r3");
+        const r4=document.getElementById("r4");
+        const r5=document.getElementById("r5");
+        const r6=document.getElementById("r6");
+        const r7=document.getElementById("r7");
+        const r8=document.getElementById("r8");
+        const r9=document.getElementById("r9");
+        const iu=document.getElementById("u");
+        function calc() {
+            let a=+inp1.value;
+            let b=+inp2.value;
+            let c=+inp3.value;
+            let D=+inp4.value;
+            let f=+inp5.value;
+            let g=+inp6.value;
+            let h=+inp7.value;
+            let u=+inp8.value;
+            let j=+inp9.value;
+            let k=+inpm1.value;
+            let m=+inpm2.value;
+            let n=+inpm3.value;
+            let w=+iu.value;
+            if (a==f && b==0 && c==0 && D==0 && g==0 && h==0 && u==0 && j==f) {
+                iu.value=1;
+                iu.hidden=true;
+                inpm4.disabled=false;
+                inpm5.disabled=false;
+                inpm6.disabled=false;
+                inpm7.disabled=false;
+                inpm8.disabled=false;
+                inpm9.disabled=false;
+            } else {
+                iu.hidden=false;
+                inpm4.disabled=true;
+                inpm5.disabled=true;
+                inpm6.disabled=true;
+                inpm7.disabled=true;
+                inpm8.disabled=true;
+                inpm9.disabled=true;
+                if (-b*c*f+b*b*g+b*c*j-c*c*u==0) {
+                    console.log("-bcf+bbg+bcj-ccu==0")
+                }
+                inpm4.value=-(c*D*f*m-b*D*g*m+c*g*h*m-c*D*j*m-b*g*h*n+c*D*n*u)/(-b*c*f+b*b*g+b*c*j-c*c*u)
+                inpm5.value=-(b*c*f*k-b*b*g*k-b*c*j*k-a*c*f*m+c*f*f*m+a*b*g*m-b*f*g*m-c*c*h*m+a*c*j*m-c*f*j*m+b*c*h*n+c*c*k*u+c*g*m*u-a*c*n*u+c*f*n*u-b*g*n*u)/(-b*c*f+b*b*g+b*c*j-c*c*u)
+                inpm6.value=-(-c*c*D*m+a*c*g*m-c*f*g*m+b*g*g*m+b*c*D*n-a*b*g*n+b*g*j*n-c*g*n*u)/(b*c*f-b*b*g-b*c*j+c*c*u)
+                inpm7.value=-(b*g*h*m-b*f*h*n+b*h*j*n-c*D*m*u+b*D*n*u-c*h*n*u)/(b*c*f-b*b*g-b*c*j+c*c*u)
+                inpm8.value=-(-b*c*h*m+b*b*h*n+a*c*m*u-c*f*m*u+b*g*m*u-a*b*n*u+b*j*n*u-c*n*u*u)/(b*c*f-b*b*g-b*c*j+c*c*u)
+                inpm9.value=-(-b*c*f*k+b*b*g*k+b*c*j*k+b*c*D*m-a*b*g*m+b*g*j*m-b*b*D*n+a*b*f*n-a*b*j*n-b*f*j*n+b*j*j*n-c*c*k*u-c*g*m*u+a*c*n*u+b*g*n*u-c*j*n*u)/(b*c*f-b*b*g-b*c*j+c*c*u)
+            }
+            calcres();
+        }
+        function calcres() {
+            let a11=+inp1.value;
+            let a12=+inp2.value;
+            let a13=+inp3.value;
+            let a21=+inp4.value;
+            let a22=+inp5.value;
+            let a23=+inp6.value;
+            let a31=+inp7.value;
+            let a32=+inp8.value;
+            let a33=+inp9.value;
+            let b11=+inpm1.value*+iu.value;
+            let b12=+inpm2.value*+iu.value;
+            let b13=+inpm3.value*+iu.value;
+            let b21=+inpm4.value*+iu.value;
+            let b22=+inpm5.value*+iu.value;
+            let b23=+inpm6.value*+iu.value;
+            let b31=+inpm7.value*+iu.value;
+            let b32=+inpm8.value*+iu.value;
+            let b33=+inpm9.value*+iu.value;
+            r1.value=a11*b11+a12*b21+a13*b31;
+            r2.value=a11*b12+a12*b22+a13*b32;
+            r3.value=a11*b13+a12*b23+a13*b33;
+            r4.value=a21*b11+a22*b21+a23*b31;
+            r5.value=a21*b12+a22*b22+a23*b32;
+            r6.value=a21*b13+a22*b23+a23*b33;
+            r7.value=a31*b11+a32*b21+a33*b31;
+            r8.value=a31*b12+a32*b22+a33*b32;
+            r9.value=a31*b13+a32*b23+a33*b33;
+            rm1.value=b11*a11+b12*a21+b13*a31;
+            rm2.value=b11*a12+b12*a22+b13*a32;
+            rm3.value=b11*a13+b12*a23+b13*a33;
+            rm4.value=b21*a11+b22*a21+b23*a31;
+            rm5.value=b21*a12+b22*a22+b23*a32;
+            rm6.value=b21*a13+b22*a23+b23*a33;
+            rm7.value=b31*a11+b32*a21+b33*a31;
+            rm8.value=b31*a12+b32*a22+b33*a32;
+            rm9.value=b31*a13+b32*a23+b33*a33;
+        }
+        calc()
+    </script>
+</body>
+</html>

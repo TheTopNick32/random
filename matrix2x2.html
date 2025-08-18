@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Матрица 2 на 2</title>
+    <style>
+        * {
+            font-family: Arial, Verdana, Helvetica, sans-serif;
+        }
+        body {
+            background: #999;
+        }
+        .big {
+            font-size: 50px;
+        }
+        input[disabled] {
+            background-color: #fff7;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <tr>
+            <td>M<sub>1</sub>=</td>
+            <td><span class="big">[</span></td>
+            <td><input type="text" id="1" value="0" oninput="calc()"><br>
+                <input type="text" id="3" value="0" oninput="calc()">
+            </td>
+            <td><input type="text" id="2" value="0" oninput="calc()"><br>
+                <input type="text" id="4" value="0" oninput="calc()">
+            </td>
+            <td><span class="big">]</span></td>
+        </tr>
+    </table>
+    <table>
+        <tr>
+            <td>M<sub>2</sub>=<input type="text" id="u" value="1" oninput="calc()"></td>
+            <td><span class="big">[</span></td>
+            <td><input type="text" id="5" value="0" oninput="calc()"><br>
+                <input type="text" id="7" value="0" oninput="calc()" disabled>
+            </td>
+            <td><input type="text" id="6" value="0" oninput="calc()" disabled><br>
+                <input type="text" id="8" value="0" oninput="calc()" disabled>
+            </td>
+            <td><span class="big">]</span></td>
+        </tr>
+    </table>
+    <span id="i2">Поменять знак <input type="checkbox" id="q" oninput="calc()"></span><br>
+    <table>
+        <tr>
+            <td>M<sub>1</sub>M<sub>2</sub>=</td>
+            <td><span class="big">[</span></td>
+            <td><input type="text" id="r1" value="0" disabled><br>
+                <input type="text" id="r3" value="0" disabled>
+            </td>
+            <td><input type="text" id="r2" value="0" disabled><br>
+                <input type="text" id="r4" value="0" disabled>
+            </td>
+            <td><span class="big">]</span></td>
+        </tr>
+    </table>
+    <table>
+        <tr>
+            <td>M<sub>2</sub>M<sub>1</sub>=</td>
+            <td><span class="big">[</span></td>
+            <td><input type="text" id="r5" value="0" disabled><br>
+                <input type="text" id="r7" value="0" disabled>
+            </td>
+            <td><input type="text" id="r6" value="0" disabled><br>
+                <input type="text" id="r8" value="0" disabled>
+            </td>
+            <td><span class="big">]</span></td>
+        </tr>
+    </table>
+    <script>
+        const inp1=document.getElementById("1");
+        const inp2=document.getElementById("2");
+        const inp3=document.getElementById("3");
+        const inp4=document.getElementById("4");
+        const inp5=document.getElementById("5");
+        const inp6=document.getElementById("6");
+        const inp7=document.getElementById("7");
+        const inp8=document.getElementById("8");
+        const r1=document.getElementById("r1");
+        const r2=document.getElementById("r2");
+        const r3=document.getElementById("r3");
+        const r4=document.getElementById("r4");
+        const r5=document.getElementById("r5");
+        const r6=document.getElementById("r6");
+        const r7=document.getElementById("r7");
+        const r8=document.getElementById("r8");
+        const iu=document.getElementById("u");
+        const iq=document.getElementById("q");
+        const i2=document.getElementById("i2");
+        function calc() {
+            let a11=+inp1.value;
+            let a12=+inp2.value;
+            let a21=+inp3.value;
+            let a22=+inp4.value;
+            let b11=+inp5.value;
+            let u=+iu.value;
+            let q=iq.checked?-1:1;
+            if (a11==a22) {
+                i2.hidden=true;
+                q=1;
+                if (a12==0 && a21==0) {
+                    iu.value="1";
+                    iu.hidden=true;
+                    inp6.disabled=false;
+                    inp7.disabled=false;
+                    inp8.disabled=false;
+                    calcres();
+                    return 1;
+                } else {
+                    iu.hidden=false;
+                    inp6.disabled=true;
+                    inp7.disabled=true;
+                    inp8.disabled=true;
+                }
+            } else {
+                iu.hidden=false;
+                i2.hidden=false;
+                inp6.disabled=true;
+                inp7.disabled=true;
+                inp8.disabled=true;
+            }
+            let b12=q*a12;
+            let b21=q*a21;
+            let b22=b11+q*(a22-a11);
+            inp6.value=b12;
+            inp7.value=b21;
+            inp8.value=b22;
+            calcres();
+            return 0;
+        }
+        function calcres() {
+            let a1=+inp1.value;
+            let a2=+inp2.value;
+            let a3=+inp3.value;
+            let a4=+inp4.value;
+            let b1=+inp5.value*+iu.value;
+            let b2=+inp6.value*+iu.value;
+            let b3=+inp7.value*+iu.value;
+            let b4=+inp8.value*+iu.value;
+            r1.value=a1*b1+a2*b3;
+            r2.value=a1*b2+a2*b4;
+            r3.value=a3*b1+a4*b3;
+            r4.value=a3*b2+a4*b4;
+            r5.value=b1*a1+b2*a3;
+            r6.value=b1*a2+b2*a4;
+            r7.value=b3*a1+b4*a3;
+            r8.value=b3*a2+b4*a4;
+        }
+        calc()
+    </script>
+</body>
+</html>
